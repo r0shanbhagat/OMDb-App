@@ -12,7 +12,7 @@ android {
     compileSdk = ConfigData.compileSdkVersion
 
     defaultConfig {
-        applicationId = "com.truecaller.truecallerblog"
+        applicationId = "com.omdb.app"
         minSdk = ConfigData.minSdkVersion
         targetSdk = ConfigData.targetSdkVersion
         versionCode = ConfigData.versionCode
@@ -62,12 +62,12 @@ android {
     flavorDimensions.add("environment")
     productFlavors {
         create("dev") {
-            resValue("string", "app_name", "TrueCallerBlog Exercise Dev")
-            buildConfigField("String", "BASE_URL", "\"https://truecaller.blog/\"")
+            resValue("string", "app_name", "OmDb App Dev")
+            buildConfigField("String", "BASE_URL", "\"https://howtodoandroid.com/\"")
         }
         create("production") {
-            resValue("string", "app_name", "TrueCallerBlog Exercise")
-            buildConfigField("String", "BASE_URL", "\"https://truecaller.blog/\"")
+            resValue("string", "app_name", "OmDb App")
+            buildConfigField("String", "BASE_URL", "\"https://howtodoandroid.com/\"")
         }
     }
 }
@@ -81,6 +81,12 @@ dependencies {
     implementation(Deps.materialDesign)
     implementation(Deps.constraintLayout)
     implementation(Deps.multidex)
+
+    /**
+     ******************************* UI Component************************************
+     **/
+    implementation(Deps.shimmer)
+    implementation(Deps.swipeRefreshLayout)
 
     /**
      ******************************* Navigation Architecture ************************************
@@ -97,7 +103,7 @@ dependencies {
      ******************************* Network ************************************
      **/
     implementation(Deps.retrofit)
-    implementation(Deps.retrofitScalarConverter)
+    implementation(Deps.retrofitConverter)
     implementation(Deps.retrofitLogger)
 
     /**
@@ -105,6 +111,12 @@ dependencies {
      **/
     implementation(Deps.hilt)
     kapt(Deps.hiltKapt)
+
+    /**
+     ******************************* Image Loading ************************************************************
+     **/
+    implementation(Deps.glide)
+    //kapt "com.github.bumptech.glide:compiler:$glideVersion"
 
     /**
      ******************************* Unit Testing ************************************

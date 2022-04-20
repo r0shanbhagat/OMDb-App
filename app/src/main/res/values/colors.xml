@@ -13,4 +13,19 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorFontGreyDark">#333333</color>
 
+    <color name="colorFontGreyLight">#666666</color>
+    <color name="colorLine">#dfdfdf</color>
+    <color name="shimmer_color_for_image">#55efefef</color>
+    <color name="light_transparent">#16000000</color>
+    <color name="dark_transparent">#24000000</color>
+
+    <color name="colorBackground">#EFEFEF</color>
+    <color name="window_background_color">#EDEDED</color>
+    <color name="colorWhiteDull">#E6E6E6</color>
+    <color name="transparent_full">#00022648</color>
+    <color name="shimmer_background_gray">#dddddd</color>
+    <color name="label">#959595</color>
+    <color name="lightGray">#C1C1C1</color>
+    <color name="button_text_grey">#464646</color>
+
 </resources>
