@@ -31,9 +31,16 @@ class MovieActivity(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        navController = findNavController(R.id.nav_host_fragment)
+        addNavigateCallback()
     }
 
+    /**
+     * Adding Navigation Callback
+     */
+    private fun addNavigateCallback() {
+        setSupportActionBar(binding.toolbar)
+        navController = findNavController(R.id.nav_host_fragment)
+    }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
