@@ -22,9 +22,8 @@ import com.omdb.app.ui.view.dialog.ProgressDialog
  * @param VM
  * @constructor Create Base fragment
  */
-abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel> : Fragment() {
+abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
     protected lateinit var binding: B
-    private lateinit var mViewModel: VM
     private lateinit var progressDialog: ProgressDialog
 
 
@@ -34,10 +33,7 @@ abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel> : Fragment(
         savedInstanceState: Bundle?,
     ): View? {
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        mViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.executePendingBindings()
-        binding.setVariable(bindingVariable, mViewModel)
         progressDialog = ProgressDialog(requireContext())
 
         return binding.root
@@ -49,12 +45,6 @@ abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel> : Fragment(
     @get:LayoutRes
     abstract val layoutId: Int
 
-    /**
-     * Override for set view model
-     *
-     * @return view model instance
-     */
-    abstract val viewModel: VM
 
     /**
      * Override for set binding variable

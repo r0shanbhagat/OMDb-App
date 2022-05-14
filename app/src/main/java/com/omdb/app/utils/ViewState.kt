@@ -5,7 +5,7 @@ package com.omdb.app.utils
  * the business logic in more clear way
  * @Author Roshan Bhagat
  */
-sealed class DataState {
+sealed class ViewState {
 
     /**
      * Success
@@ -13,7 +13,7 @@ sealed class DataState {
      * @property data
      * @constructor Create Success
      */
-    data class Success(val data: Any?) : DataState()
+    data class Success(val data: Any?) : ViewState()
 
     /**
      * Error
@@ -21,12 +21,12 @@ sealed class DataState {
      * @property exception
      * @constructor Create  Error
      */
-    data class Error(val exception: Throwable) : DataState()
+    data class Failure(val throwable: Throwable) : ViewState()
 
     /**
      * Loading
      *
      * @constructor Create empty Loading
      */
-    object Loading : DataState()
+    object Loading : ViewState()
 }

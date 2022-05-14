@@ -1,6 +1,8 @@
 package com.omdb.app.contract
 
-import com.omdb.app.utils.DataState
+import com.omdb.app.data.api.MovieService
+import com.omdb.app.data.model.Movie
+import com.omdb.app.ui.adapter.MovieModel
 import kotlinx.coroutines.flow.Flow
 
 
@@ -13,13 +15,22 @@ import kotlinx.coroutines.flow.Flow
  */
 interface Repository {
 
-    val dataSource: MovieDataSource
+    val apiService: MovieService
 
     /**
-     * Get MovieList
+     * Get search result data.
      *
+     * @param searchTitle Search title
+     * @param pageIndex Page index
      * @return
      */
-    suspend fun getMovieList(): Flow<DataState>
+    suspend fun getSearchResultData(searchTitle: String, pageIndex: Int): Flow<List<MovieModel>>
 
+    /**
+     * Get movie details data.
+     *
+     * @param imdbId Imdb id
+     * @return [Flow]
+     */
+    suspend fun getMovieDetailsData(imdbId: String): Flow<Movie>
 }

@@ -1,6 +1,7 @@
 package com.omdb.app.data.mapper
 
-import com.omdb.app.data.model.MovieResponse
+import com.omdb.app.data.model.Search
+import com.omdb.app.data.model.SearchResults
 import com.omdb.app.ui.adapter.MovieModel
 import com.omdb.app.utils.EntityMapper
 import javax.inject.Inject
@@ -12,14 +13,15 @@ import javax.inject.Inject
  *
  * @constructor
  */
-class MovieMapper @Inject constructor() : EntityMapper<MovieResponse, MovieModel> {
+class MovieMapper @Inject constructor() : EntityMapper<Search, MovieModel> {
 
-    override fun mapFromEntity(entity: MovieResponse): MovieModel {
+    override fun mapFromEntity(entity: Search): MovieModel {
         return MovieModel(
-            title = entity.name,
-            body = entity.name,
-            image = entity.imageUrl,
-            category = entity.category
+            title = entity.title,
+            body = entity.type,
+            image = entity.poster,
+            year = entity.year,
+            imdb = entity.imdb
         )
     }
 
@@ -29,8 +31,8 @@ class MovieMapper @Inject constructor() : EntityMapper<MovieResponse, MovieModel
      * @param entities
      * @return
      */
-    fun mapFromEntityList(entities: List<MovieResponse>?): List<MovieModel> {
-        return entities?.map {
+    fun mapFromEntityList(entities: SearchResults?): List<MovieModel> {
+        return entities?.searches?.map {
             mapFromEntity(it)
         } ?: emptyList()
     }

@@ -1,0 +1,34 @@
+package com.omdb.app.data.model
+
+import android.text.TextUtils
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
+import com.omdb.app.BR
+
+/**
+ * @Details LoginModel
+ * @Author Roshan Bhagat
+ */
+class SearchModel : BaseObservable() {
+
+    @get:Bindable
+    var searchText: String = ""
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.searchText)
+        }
+
+
+    @get:Bindable
+    var isSubmitEnable: Boolean = false
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.submitEnable)
+        }
+
+    fun onTextChanged() {
+        isSubmitEnable = !TextUtils.isEmpty(searchText) && searchText.length > 3
+    }
+
+
+}

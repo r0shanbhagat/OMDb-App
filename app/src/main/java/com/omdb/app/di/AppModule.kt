@@ -1,13 +1,10 @@
 package com.omdb.app.di
 
-import com.omdb.app.contract.Repository
-import com.omdb.app.contract.UseCase
-import com.omdb.app.domain.MovieUseCase
+import com.omdb.app.data.model.SearchModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import kotlinx.coroutines.CoroutineDispatcher
 
 /**
  * Defines all the classes that need to be provided in the scope of the app.
@@ -21,16 +18,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 @Module
 class AppModule {
 
-    /**
-     * Provide movie content use case.
-     *
-     * @param repository Repository
-     * @param ioDispatcher Io dispatcher
-     * @return [UseCase]
-     */
     @Provides
-    fun provideBlogContentUseCase(
-        repository: Repository,
-        @IoDispatcher ioDispatcher: CoroutineDispatcher
-    ): UseCase = MovieUseCase(repository, ioDispatcher)
+    fun provideSearchModel(): SearchModel {
+        return SearchModel()
+    }
 }

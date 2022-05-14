@@ -1,15 +1,16 @@
 package com.omdb.app.ui.viewmodel
 
-import androidx.databinding.ObservableInt
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.omdb.app.contract.UseCase
+import com.omdb.app.contract.Repository
 import com.omdb.app.core.BaseViewModel
-import com.omdb.app.utils.DataState
+import com.omdb.app.ui.adapter.MovieModel
+import com.omdb.app.utils.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,23 +22,17 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class MovieViewModel @Inject constructor(
-    private val movieContentUseCase: UseCase
+    private val repository: Repository
 ) : BaseViewModel() {
 
-    companion object {
-        const val EMPTY_DATA = 1
-        const val ERROR = 2
-        const val LOADING = 0
-        const val LISTING_ITEM = 1
+    private val _viewState: MutableLiveData<ViewState> by lazy {
+        MutableLiveData<ViewState>()
     }
 
+    private var moviesList: ArrayList<MovieModel> = ArrayList()
 
-    private val _dataState: MutableLiveData<DataState> by lazy {
-        MutableLiveData<DataState>()
-    }
 
-    val dataState: LiveData<DataState> = _dataState
-    val errorState: ObservableInt = ObservableInt(LOADING)
+    val viewState: LiveData<ViewState> = _viewState
 
 
     /**
@@ -48,7 +43,7 @@ class MovieViewModel @Inject constructor(
     fun setStateIntent(mainStateEvent: MovieStateEvent) {
         when (mainStateEvent) {
             is MovieStateEvent.GetMoviesList -> {
-                getMovieList()
+                getSearchResultData(mainStateEvent.data.toString())
             }
 
             is MovieStateEvent.None -> {
@@ -60,14 +55,31 @@ class MovieViewModel @Inject constructor(
     /*
      * getBlogContent return the movie parsed data using flow that continuously emit the value
      */
-    private fun getMovieList() {
+    private fun getSearchResultData(searchTitle: String) {
+
         viewModelScope.launch {
-            movieContentUseCase.getMovieList()
-                .onEach { flowData ->
-                    _dataState.value = flowData
+
+            moviesList.clear()
+
+            repository
+                .getSearchResultData(searchTitle, 1)
+                .onStart {
+                    _viewState.postValue(ViewState.Loading)
                 }
-                .launchIn(viewModelScope)
+                .catch { exception ->
+                    _viewState.postValue(ViewState.Failure(exception))
+                }
+                .collect {
+                    moviesList.addAll(it)
+                    moviesList.sortByDescending {
+                        it.year
+                    }
+
+                    _viewState.postValue(ViewState.Success(moviesList))
+                }
+
         }
+
     }
 
 }
@@ -84,7 +96,7 @@ sealed class MovieStateEvent {
      *
      * @constructor
      */
-    object GetMoviesList : MovieStateEvent()
+    data class GetMoviesList(val data: Any?) : MovieStateEvent()
 
     /**
      * None

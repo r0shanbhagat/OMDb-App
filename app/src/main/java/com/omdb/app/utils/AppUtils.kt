@@ -5,7 +5,9 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.text.TextUtils
 import android.util.Log
+import androidx.navigation.NavOptions
 import com.omdb.app.BuildConfig
+import com.omdb.app.R
 
 /**
  * @Details AppUtils: Common Utility Class to handle the utils functions
@@ -58,6 +60,19 @@ fun showLog(tagName: String?, message: String) {
 fun logException(t: Throwable?) {
     if (BuildConfig.DEBUG) {
         Log.e("", Log.getStackTraceString(t))
+    }
+}
+
+
+/**
+ * @method used to apply animation in fragment navigation
+ */
+fun applyAnimation(navOptionBuilder: NavOptions.Builder) {
+    navOptionBuilder.apply {
+        setEnterAnim(R.anim.right_in)
+        setExitAnim(R.anim.left_out)
+        setPopExitAnim(R.anim.right_out)
+        setPopEnterAnim(R.anim.left_in)
     }
 }
 

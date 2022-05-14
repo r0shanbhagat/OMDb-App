@@ -1,17 +1,21 @@
 package com.omdb.app.ui.adapter
 
+import android.os.Parcelable
 import androidx.databinding.BaseObservable
 import com.omdb.app.R
-import com.omdb.app.ui.viewmodel.MovieViewModel
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class MovieModel(
     var title: String,
     var body: String,
     var image: String,
-    var category: String
-) : BaseObservable(), ItemViewModel {
+    var year: String,
+    var imdb: String
 
-    override val layoutId: Int = R.layout.item_movie_list
+) : BaseObservable(), Parcelable, ItemViewModel {
 
-    override val viewType: Int = MovieViewModel.LISTING_ITEM
+    override val layoutId: Int = R.layout.list_item_movie
+
+    override val viewType: Int = 0
 }
