@@ -8,13 +8,12 @@ This application is a simple implementation of the popular images feature of 500
     
 ## App Overview      
       
-1.Search the Movie </br>
-2.Show the List of Suggested Movie </br>
-3.Show the Detail on Tapping of any List.</br>
+1.Search the Movies by Name </br>
+2.Show the List of Suggested Movies </br>
+3.Show the Details of Movie by Tapping on that.</br>
 
-<img alt="Popular Images List" height="250px" width="110px" src="https://user-images.githubusercontent.com/22414106/168663851-a97c962e-3f59-4a4a-8a8a-866fa2ea40c2.png" > <img alt="Popular Images List" height="250px" width="110px" src="https://user-images.githubusercontent.com/22414106/168663865-0ec95b5e-520e-4508-a4ff-07db7f41200e.png" >  <img alt="Popular Images List" height="250px" width="110px" src="https://user-images.githubusercontent.com/22414106/168663919-c9b11f6b-befd-40b4-98e0-4f8d95fd077a.png" >  <img alt="Popular Images List" height="250px" width="110px" src="https://user-images.githubusercontent.com/22414106/168663925-dc5020ad-dcf1-4d7e-b479-581c28f49ef0.png" > 
+<img alt="Search Movie" height="250px" width="120px" src="https://user-images.githubusercontent.com/22414106/168666766-16c718e7-1267-4c00-a7b0-3065f497fc7b.png" > <img alt="Popular Movie List" height="250px" width="120px" src="https://user-images.githubusercontent.com/22414106/168666738-4ba5ddf6-a4ae-4ffd-a4f8-6fff0057ab49.png" > <img alt="Movie Detail" height="250px" width="120px" src="https://user-images.githubusercontent.com/22414106/168666768-cc296ede-395b-477b-9341-f31c07f6d7f9.png" > 
          
-    
 Navigation between the screens has been done using the Jetpack Navigation library and the following is its nav graph:    
 
       
