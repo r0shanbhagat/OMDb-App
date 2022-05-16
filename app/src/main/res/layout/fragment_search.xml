@@ -39,7 +39,7 @@
                 android:inputType="text"
                 android:maxLength="20"
                 android:maxLines="1"
-                android:onTextChanged="@{(text,start,before,count)->model.onTextChanged()}"
+                android:onTextChanged="@{(text,start,before,count)->model.onTextChanged(text)}"
                 android:text="@={model.searchText}" />
 
         </com.google.android.material.textfield.TextInputLayout>

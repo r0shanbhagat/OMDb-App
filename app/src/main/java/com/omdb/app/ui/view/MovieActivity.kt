@@ -12,11 +12,11 @@ import dagger.hilt.android.AndroidEntryPoint
 
 /**
 /**
- * @Details TruecallerBlogActivity : Main activity where user0interface will
+ * @Details MovieActivity : Main activity where user0interface will
  * be displayed and user can interact with app on launch
  * @Author Roshan Bhagat
 */ *
- * @constructor Create Truecaller movie activity
+ * @constructor Create Movie Activity
  */
 @AndroidEntryPoint
 class MovieActivity(

@@ -1,4 +1,4 @@
-package com.omdb.app.utils
+package com.omdb.app.contract
 
 /**
  * @Details EntityMapper: It helps to create the Model from Existing response source.

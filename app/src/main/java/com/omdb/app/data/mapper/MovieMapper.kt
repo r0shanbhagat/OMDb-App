@@ -1,9 +1,9 @@
 package com.omdb.app.data.mapper
 
+import com.omdb.app.contract.EntityMapper
 import com.omdb.app.data.model.Search
 import com.omdb.app.data.model.SearchResults
 import com.omdb.app.ui.adapter.MovieModel
-import com.omdb.app.utils.EntityMapper
 import javax.inject.Inject
 
 

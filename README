@@ -1,44 +1,59 @@
-	 	 Application Architecture
+	 	 Android Application Clean Architecture
 
 src
-	├─ Core     (Core code related to the application resides here)
+	├─ Contract  (Common Interface for the application resides here)
+                      ├─ repository (IRepository interface implemented by Repository Implementer)
+			          ├─ EntityMapper (Mapper convert the response to Pojo)
+
+	├─ Core     (Base/Core code related to the application resides here)
                       ├─ activity (Base Activity resides here)
                       ├─ fragment (Base Fragment resides here)
                       ├─ viewmodel (Base ViewModel resides here)
-				├─ di (All the API related to dependency injection)
-                                ├─ AppModule (Application level module and provider for App level data)
-                                ├─ NetworkModule (Networking related module and provides all API for N/W)
-                                ├─ RepositoryModule (Repository design Pattern related code)
-				├─ network (Base class used for managing network connections)
-				├─ repository
-                      ├─ model (Beans class for Response Object)
+
+	├─ Data     (api, mapper, model class of application resides here)
+                      ├─ api (API EndPoints for n/w calls)
+                      ├─ mapper (Convert the n/w response into Bean)
+                      ├─ model (Pojo class for API response reside here)
                       ├─ repository Design pattern used to separate the ViewModel and API service call
 
+    ├─ di       (All the API related to dependency injection)
+                      ├─ appModule (Application level module and provider for App level data)
+                      ├─ dispatcherModule (Application level Coroutine dispatcher data)
+                      ├─ fragmentModule (Provider for fragment UI)
+                      ├─ networkModule (Networking related module and provides all API for N/W)
+                      ├─ repositoryModule (Repository design Pattern related code)
+
 	├─ ui
-                     ├─ activity :Code related to your parent activities
-                     └─ dialog   : Loading dialog related class
-                     └─ fragments:Code related to your parent fragment
+                     ├─ adapter (Code related to adapter for list)
+                     ├─ callback (Interface for communication)
+                     ├─ view (View for App)
+                         ├─ dialog (Dialog)
+                         ├─ fragment (fragments)
+                         ├─ activity (activity)
+                     ├─ viewmodel (Contains app level viewmodel)
 
-                    ├─ util
-                       ├─ AppConstant (Store constant files for entire App)
-                       ├─ AppUtils (Utility class)
-                       ├─ CaseInsensitiveMap (Customized LinkedHashMap used to handle insensitive key case)
-                       ├─ DataState (Event Stream class for observer)
-                       ├─ EntityMapper Mapper convert the response to Model
+    ├─ util
+                     ├─ AppUtils (Utility class contains util methods)
+                     ├─ BindingAdapters (BindingAdapter is applied to methods that are used to manipulate how values with expressions are set to views.)
+                     ├─ Constants (Store constant files for entire App)
+                     ├─ ContextExt (Extension function for context)
+                     ├─ DialogUtil (Dialog Util)
+                     ├─ NoInternetException (Custom Exception class to handle NoInternetException Log)
+                     ├─ ViewExt (Extension function for view)
+                     ├─ ViewState (Holder for MVI Architecture)
 
-				├─ viewmodel
-                       ├─ operationhelper (Operation Helper can used to perform common task as per requirement)
+OmDbApp
 
 Assignment Output 
 
-1. Truecaller10thCharacterRequest:
-O/p: Successfully hit the service and returned the " " space as 10th character.
+1. Enter Movie Name:
+O/p: Based on User entered movie fetch the data from service.
 
-2. TruecallerEvery10thCharacterRequest:
-O/p: Successfully Returned a String of every 10th character (i.e. 10th, 20th, 30th, etc.) and display the array on the screen.
+2. Show List of Movie:
+O/p: Successfully Returned and List of movies and display on the screen.
 
-3. TruecallerWordCounterRequest:
-O/p: Successfully returned the linkedHaspMap string with index as words and its count in response as value of the html response callback.
+3. Show Detail Screen:
+O/p: Tapping on individual movies now we're able to see the details of movie
 
 
 Tech Stack

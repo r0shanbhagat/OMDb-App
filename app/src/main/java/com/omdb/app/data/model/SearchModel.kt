@@ -16,6 +16,7 @@ class SearchModel : BaseObservable() {
         set(value) {
             field = value
             notifyPropertyChanged(BR.searchText)
+
         }
 
 
@@ -26,7 +27,7 @@ class SearchModel : BaseObservable() {
             notifyPropertyChanged(BR.submitEnable)
         }
 
-    fun onTextChanged() {
+    fun onTextChanged(searchText: CharSequence) {
         isSubmitEnable = !TextUtils.isEmpty(searchText) && searchText.length > 3
     }
 
