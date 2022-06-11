@@ -7,7 +7,6 @@ OMDb-App is a implementation of the popular images source feature of 500px which
 - Kotlin features (Lambdas, Extension functions, typealias, sealed class and Coroutines)        
     
 ## App Overview      
-      
 1. Search the Movies by Name </br>
 2. Show the List of Suggested Movies </br>
 3. Show the Details of Movie by Tapping on that.</br>
@@ -16,6 +15,10 @@ OMDb-App is a implementation of the popular images source feature of 500px which
          
 Navigation between the screens has been done using the Jetpack Navigation library and the following is its nav graph:    
 
+ ## 🚀 MAD Scorecard
+<img src="https://user-images.githubusercontent.com/22414106/173184347-8ceefbb6-608d-44dd-8113-adff209267e5.png" width="400"></img>
+
+<img src="https://user-images.githubusercontent.com/22414106/173184370-ec7057e9-3db1-4ed3-8a4c-14437e8f67f5.png" width="400"></img>
       
 ## Libraries The App uses libraries and tools used to build Modern Android application, mainly part of Android Jetpack 
 - [Kotlin](https://kotlinlang.org/) first
